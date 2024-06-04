@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>INFOSTREAM</title>
+    <!-- Include your CSS and other external resources here -->
+    <link rel="icon" type="image/png" href="/img/favicon.png" sizes="32x32">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- Local CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- ... (your other CSS and resources) ... -->
+    
+    <style>
+        /* Add this CSS to remove the background color */
+        body {
+            background: transparent;
+        }
+
+        /* Add this CSS to align search and calendar icon to the left */
+        .search-form-container i {
+            margin-right: 10px; /* Adjust as needed */
+        }
+        
+        /* CSS to align the news section without empty space */
+        .news-section {
+            margin-top: 0; /* Remove any top margin */
+            padding-top: 20px; /* Add padding for spacing if needed */
+        }
+        
+        /* Style the spinner/loader */
+        #spinner {
+            display: none; /* Hide the spinner by default */
+        }
+
+        /* Style for displaying stock information in a small box */
+        .stock-box {
+            max-width: 300px; /* Adjust the maximum width as needed */
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            padding: 10px;
+        }
+
+        .stock-box p {
+            font-size: 14px;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Your existing HTML content here -->
+    <div class="body_wrapper">
+        <div class="center">
+            <div class="header_area">
+                <!-- ... (your existing header content) ... -->
+            </div>
+            <div id="navData">
+                <!-- Stock data will be displayed here -->
+              </div>
+            <div class="main_menu_area">
+                <ul id="nav">
+                    <li><a class="data-category" href="#" >National</a></li>
+                    <li><a class="data-category" href="#">General</a></li>
+                    <li><a class="data-category" href="#">Sports</a></li>
+                    <li><a class="data-category" href="#" >Technology</a></li>
+                    <li><a class="data-category" href="#" >Business</a></li>
+                    <li><a class="data-category" href="#" >Entertainment</a></li>
+                    <li><a class="data-category" href="#" >Health</a></li>
+                    <li><a class="data-category" href="#" >Science</a></li>
+                </ul>
+            </div>
+            <div class="slider_area">
+                <!-- ... (your existing slider content) ... -->
+            </div>
+            <div class="sidebar floatright">
+                <!-- ... (your existing sidebar content) ... -->
+            </div>
+        </div>
+        <div class="footer_top_area">
+            <!-- ... (your existing footer content) ... -->
+        </div>
+    </div>
+    
+    <div id="selectedCategory">Selected Category: </div>
+
+    <!-- Add a placeholder for stock data -->
+    <div class="news-section">
+        <div id="stockBox" class="container stock-box"></div>
+        <div id="spinner" class="mySpin spinner-border text-warning"></div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Define your Alpha Vantage API key
+        const apiKey = 'FWE4EDLYIT6AT3T0';
+    
+        let stockBox = document.getElementById('stockBox');
+        let spinner = document.getElementById('spinner');
+        let selectedCategoryElement = document.getElementById("selectedCategory");
+    
+        // Create an XMLHttpRequest object
+        const xhr = new XMLHttpRequest();
+    
+        // Function to update the stock data
+        function updateStockData(data) {
+            // Extract the relevant stock data here
+            const stockData = data['Time Series (Daily)'];
+            // You can process and display the stock data as needed
+            
+            // Example: Display the first entry in the stock data
+            const firstDate = Object.keys(stockData)[0];
+            const stockInfo = stockData[firstDate];
+            
+            let stockHTML = `
+                <div class="stock-info">
+                    <p>Date: ${firstDate}</p>
+                    <p>Open: ${stockInfo['1. open']}</p>
+                    <p>High: ${stockInfo['2. high']}</p>
+                    <p>Low: ${stockInfo['3. low']}</p>
+                    <p>Close: ${stockInfo['4. close']}</p>
+                    <p>Volume: ${stockInfo['5. volume']}</p>
+                </div>`;
+            
+            stockBox.innerHTML = stockHTML;
+            spinner.style.display = 'none';
+            stockBox.style.display = 'block';
+        }
+    
+        // Function to fetch stock data for a symbol
+        function getStockData(symbol) {
+            spinner.style.display = 'block';
+            stockBox.style.display = 'none';
+    
+            // Create the API URL
+            const apiUrl = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${apiKey}`;
+    
+            // Send the API request
+            xhr.open('GET', apiUrl, true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const data = JSON.parse(xhr.responseText);
+                    updateStockData(data);
+                } else if (xhr.readyState === 4) {
+                    console.log("Error fetching stock data");
+                }
+            }
+            xhr.send();
+        }
+    
+        // Example: Attach a click event listener to fetch IBM stock data
+        getStockData('IBM');
+    
+        // Attach click event listeners to category elements
+        let categoryElements = document.querySelectorAll('#nav li a.data-category');
+        categoryElements.forEach((categoryElement, index) => {
+            categoryElement.addEventListener('click', (event) => {
+                event.preventDefault();
+                let categoryName = categoryElement.textContent.toLowerCase(); // Convert to lowercase
+                console.log('Selected category:', categoryName);
+                selectedCategoryElement.textContent = categoryName;
+                // Example: Fetch stock data for a symbol based on the selected category
+                // Replace 'SYMBOL' with the appropriate stock symbol for each category
+                // getStockData('SYMBOL');
+            });
+        });
+    </script> 
+    <!-- ... (your other JavaScript resources) ... -->
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>INFOSTREAM</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+  <link rel="icon" type="image/png" href="/img/favicon.png" sizes="32x32">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <!-- Local CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="assets/font/font-awesome.min.css" />
+  <link rel="stylesheet" type="text/css" href="assets/font/font.css" />
+  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" media="screen" />
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css" media="screen" />
+  <link rel="stylesheet" type="text/css" href="assets/css/responsive.css" media="screen" />
+  <link rel="stylesheet" type="text/css" href="assets/css/jquery.bxslider.css" media="screen" />
+  <style>
+    .social_plus_search {
+      display: flex;
+      align-items: center;
+    }
+
+    .search-form-container {
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+    }
+
+    .search-form-container input[type="text"] {
+      margin-right: 10px;
+    }
+
+    #voiceSearchBtn {
+      margin-right: 10px;
+      color: black;
+    }
+
+    .calendar-icon {
+      margin-right: 10px;
+    }
+
+    .search-form-container i {
+      margin-right: 10px;
+    }
+
+    .profile-button {
+      margin-left: 0;
+    }
+
+    .news-section {
+      margin-top: 0;
+      padding-top: 20px;
+    }
+
+    .stock-info {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="body_wrapper">
+    <div class="center">
+      <div class="header_area">
+        <div class="logo floatleft"><a href="#"><img src="download.jpeg" width="100px" height="50px" alt="" /></a>
+        </div>
+        <div class="top_menu floatleft">
+          <ul>
+            <li><a href="work1.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="feed.html">Feedback</a></li>
+            <li><a href="login.html">Login</a></li>
+          </ul>
+        </div>
+       
+        <div class="social_plus_search">
+          <form action="#" method="post" id="search_form" class="search-form-container">
+            <button type="button" class="btn btn-outline-success" id="voiceSearchBtn"></button>
+          </form>
+          <form class="profile">
+            <a href='profile.php' class="profile-button">
+              <img src="image1.jpeg" alt="Profile Picture" class="profile-picture" height="50px" width="50px" />
+            </a>
+          </form>
+        </div>
+      </div>
+      <div class="main_menu_area">
+        <ul id="nav">
+          <li><a class="data-category" href="#">General</a></li>
+        </ul>
+      </div>
+      <div class="slider_area">
+        <div class="slider">
+          <ul class="bxslider">
+            <li><img src="images/one.jpeg" alt="" title="Slider caption text" /></li>
+            <li><img src="images/2.jpg" alt="" title="Slider caption text" /></li>
+            <li><img src="images/3.jpg" alt="" title="Slider caption text" /></li>
+            <li><img src="images/1.jpg" alt="" title="Slider caption text" /></li>
+            <li><img src="images/2.jpg" alt="" title="Slider caption text" /></li>
+            <li><img src="images/3.jpg" alt="" title="Slider caption text" /></li>
+          </ul>
+        </div>
+      </div>
+      <div class="sidebar floatright">
+        <div class="single_sidebar"> <img src="images/add1.png" alt="" /> </div>
+        <div class="single_sidebar">
+          <div class="news-letter">
+            <h2>Stock Data for the Day</h2>
+            <p>Get the latest stock data for the day.</p>
+            <form>
+              <select id="stockSymbol">
+                <option value="IBM">IBM</option>
+                <option value="AAPL">Apple</option>
+                <!-- Add more options for other stocks as needed -->
+              </select>
+              <button type="button" onclick="fetchStockData()">Fetch Stock Data</button>
+            </form>
+            <div id="stockBox" style="display: none;"></div>
+            <div id="spinner" class="mySpin spinner-border text-warning" style="display: none;"></div>
+          </div>
+        </div>
+        <div class="single_sidebar"> <img src="images/add1.png" alt="" /> </div>
+        <div class="single_sidebar">
+          <h2 class="title">ADD</h2>
+          <img src="images/add2.png" alt="" />
+        </div>
+      </div>
+      <div id="selectedCategory"> </div>
+      <div class="news-section">
+        <div id="newsBox" class="container"></div>
+        <div id="spinner" class="mySpin spinner-border text-warning"></div>
+      </div>
+    </div>
+    <div class="footer_top_area">
+      <div class="inner_footer_top"> <img src="images/add3.png" alt="" /> </div>
+    </div>
+  </div>
+  </div>
+  <script type="text/javascript" src="assets/js/jquery-min.js"></script>
+  <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="assets/js/jquery.bxslider.js"></script>
+  <script type="text/javascript" src="assets/js/selectnav.min.js"></script>
+  <script type="text/javascript">
+    selectnav('nav', {
+      label: '-Navigation-',
+      nested: true,
+      indent: '-'
+    });
+    selectnav('f_menu', {
+      label: '-Navigation-',
+      nested: true,
+      indent: '-'
+    });
+    $('.bxslider').bxSlider({
+      mode: 'fade',
+      captions: true
+    });
+  </script>
+  <!-- JavaScript -->
+  <script src="app4.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/google-translate-api"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+  <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+    integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+    crossorigin="anonymous"></script>
+  <script>
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement(
+        { pageLanguage: 'en', includedLanguages: 'hi', layout: google.translate.TranslateElement.InlineLayout.SIMPLE },
+        'google_translate_element'
+      );
+    }
+  </script>
+  <script>
+    // Define your Alpha Vantage API key
+    const apiKey = 'YOUR_API_KEY';
+
+    let stockBox = document.getElementById('stockBox');
+    let spinner = document.getElementById('spinner');
+
+    // Create an XMLHttpRequest object
+    const xhr = new XMLHttpRequest();
+
+    // Function to update the stock data
+    function updateStockData(data) {
+      // Extract the relevant stock data here
+      const stockData = data['Time Series (Daily)'];
+      // You can process and display the stock data as needed
+
+      // Example: Display the first entry in the stock data
+      const firstDate = Object.keys(stockData)[0];
+      const stockInfo = stockData[firstDate];
+
+      let stockHTML = `
+        <div class="stock-info">
+          <p>Date: ${firstDate}</p>
+          <p>Open: ${stockInfo['1. open']}</p>
+          <p>High: ${stockInfo['2. high']}</p>
+          <p>Low: ${stockInfo['3. low']}</p>
+          <p>Close: ${stockInfo['4. close']}</p>
+          <p>Volume: ${stockInfo['5. volume']}</p>
+        </div>`;
+
+      stockBox.innerHTML = stockHTML;
+      spinner.style.display = 'none';
+      stockBox.style. display = 'block';
+    }
+
+    // Function to fetch stock data for a symbol
+    function fetchStockData() {
+      const selectedSymbol = document.getElementById('stockSymbol').value;
+      spinner.style.display = 'block';
+      stockBox.style.display = 'none';
+
+      // Create the API URL
+      const apiUrl = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${selectedSymbol}&apikey=${apiKey}`;
+
+      // Send the API request
+      xhr.open('GET', apiUrl, true);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          const data = JSON.parse(xhr.responseText);
+          updateStockData(data);
+        } else if (xhr.readyState === 4) {
+          console.log("Error fetching stock data");
+        }
+      }
+      xhr.send();
+    }
+  </script>
+</body>
+</html>

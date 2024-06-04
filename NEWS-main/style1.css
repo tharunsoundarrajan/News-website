@@ -1,0 +1,120 @@
+/* Add this CSS code to your existing styles */
+.newsCard {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+/* Customize the card styles as needed */
+.card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.card-text {
+    font-size: 1rem;
+    margin: 10px 0;
+}
+
+.card-author,
+.card-date {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.card-img-top {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Center align text in the cards */
+.card-body {
+    text-align: center;
+}
+.newsCard {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin: 20px 0;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.head h3 {
+    font-size: 28px;
+    text-shadow: 2px 2px 5px red;
+    text-align: center;
+    transition: text-shadow 0.5s, font-size 0.3s;
+}
+/* Add this CSS code to your existing styles */
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Add this CSS code to your existing styles */
+.login-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #0056b3;
+}
+
+/* Adjust the alignment of the button within the header */
+.navbar-collapse {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Add this line to push the Login button to the right */
+}
+
+.navbar-toggler {
+    order: -1; /* Move the toggler to the left of the header */
+}
+
+
+
+/* Adjust card spacing and width based on your design preferences */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .newsCard {
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+}
+

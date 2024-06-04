@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Info Stream</title>
+    <!-- favicon -->
+    <link rel="icon" type="image/png" href="/img/favicon.png" sizes="32x32">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- Local CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- ... (other parts of your HTML code) ... -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+<!-- Include flatpickr CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+<!-- ... (rest of your HTML code) ... -->
+
+
+    <!-- Breaking News Ticker CSS -->
+    <style>
+        #breaking-news {
+            background-color: #f8f9fa;
+            padding: 5px 0;
+            text-align: center;
+            font-weight: bold;
+            color: #dc3545;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Breaking News Ticker -->
+    <div id="breaking-news">
+        <marquee behavior="scroll" direction="left" scrollamount="8">
+            Breaking News: Chandrayan-3 sucessfully launched on the southpole of the moon
+        </marquee>
+    </div>
+    <!-- Bootstrap Navbar -->
+    <nav id="navbar">
+        <nav class="navbar navbar-dark navbar-expand-lg bg-dark">
+            <div class="container-fluid">
+                <div class="navbar-brand-group d-flex">
+                <a class="navbar-brand" href="#">Info Stream</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page"  onclick="getNews('all')"href ="#">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <span id="selectedCategory">Category</span>
+                            </a>
+                            <ul id="webList" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">National</a></li>
+                                <li><a class="dropdown-item" href="#">Business</a></li>
+                                <li><a class="dropdown-item" href="#">Sports</a></li>
+                                <li><a class="dropdown-item" href="#">World</a></li>
+                                <li><a class="dropdown-item" href="#">Politics</a></li>
+                                <li><a class="dropdown-item" href="#">Technology</a></li>
+                                <li><a class="dropdown-item" href="#">Startup</a></li>
+                                <li><a class="dropdown-item" href="#">Entertainment</a></li>
+                                <li><a class="dropdown-item" href="#">Miscellaneous</a></li>
+                                <li><a class="dropdown-item" href="#">Hatke</a></li>
+                                <li><a class="dropdown-item" href="#">Science</a></li>
+                                <li><a class="dropdown-item" href="#">Automobile</a></li>
+                            </ul>
+                            
+                        </li>
+                        <li class ="nav-item">
+                          <form class ="d-flex  ml-auto ">
+                            <input type="text" id="datepicker" class="form-control" placeholder="Select a date">
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="fas fa-calendar-alt" id="calendarButton"></i>
+                                </span>
+                            </div>
+                            
+                             <div class="navbar-nav ml-auto">
+                             <div class="input-group" style="display: flex; align-items: flex-end;">
+                                  <input type="text" id="locationInput" class="form-control" placeholder="&#xf3c5; location"
+                                    aria-label="Enter a location" aria-describedby="getNewsBtn" style="height: 30px; flex: 1;">
+                                  <button class="btn btn-primary" type="button" id="getNewsBtn" style="height: 30px;">Get News</button>
+                             </div>
+                            
+                            </form>
+                        </li>
+                       
+                    </ul>
+  <!-- ... (other parts of your HTML code) ... -->
+<!-- ... (rest of your HTML code) ... -->    <!-- ... (other parts of your HTML code) ... -->
+<!---  <form class="profile">
+<div class="profile-button">
+<img src="image1.jpeg" alt="Profile Picture" class="profile-picture"><a href='profile.php' class="profile-link">Profile</a>
+                                </div>
+                            </form>-->
+                           
+<!-- ... (rest of your HTML code) ... -->
+    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+         <li class="nav-item">
+
+                <button class="btn btn-outline-success" id="voiceSearchBtn">
+                     <i class="fas fa-microphone"></i>
+                 </button>
+         </li>
+       <div style="width: 10px;"></div>
+       <li>
+           <form class="profile">
+               <a href='profile.php' class="profile-button">
+                   <img src="image1.jpeg" alt="Profile Picture" class="profile-picture">
+               </a>
+            </form>
+        </li>
+    </ul>
+
+    
+
+
+  </div>
+</div>
+</div>
+        </nav>
+    </nav>
+</div>
+    <!-- Basic Header -->
+    <div class="head container">
+        <h3>Top News <span class="badge text-bg-secondary">INNOV TECH SQUAD</span></h3>
+        <span class="line"></span>
+         <!-- Search Bar -->
+         <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
+    <!-- News Content -->
+    <div id="newsBox" class="container"></div>
+    <div id="spinner" class="mySpin spinner-border text-warning"></div>
+    <!-- Footer 
+    <footer id="sticky-footer" class="flex-shrink-0 py-2 bg-dark text-white-50">
+        <div class="container text-center">
+            <small>Copyright &copy;2022 &nbsp; Hardik Desai</small>
+        </div>
+    </footer-->
+    <!-- JavaScript -->
+    
+    <script src="app1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
